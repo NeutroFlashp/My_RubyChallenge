@@ -48,7 +48,7 @@ while true
     movements
 
   when 5
-    print 'Bye!'
+    print 'Closing the program!'
     exit(0)
 
   else
