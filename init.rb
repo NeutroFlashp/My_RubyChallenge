@@ -16,7 +16,13 @@ def menu
 end
 
 def stocks
-  puts PRODUCTS
+  PRODUCTS.each do |hash_products|
+    puts "_________________"
+    hash_products.each do |symbol, value|
+      puts "| #{symbol} = #{value} |"
+    end
+    puts "_________________"
+  end
 end
 
 def add
@@ -33,7 +39,7 @@ def movements
   puts 'movements'
 end
 
-while true
+loop do
   case menu
   when 1
     stocks
@@ -54,4 +60,5 @@ while true
   else
     puts 'Select a correct option'
   end
+  system('clear')
 end

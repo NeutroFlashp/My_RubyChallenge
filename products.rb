@@ -2,7 +2,7 @@
 
 PRODUCTS = [
   {
-    type: 'A',
+    type: 'D',
     quantity: 50,
     unit_cost: 9
   },
@@ -15,6 +15,11 @@ PRODUCTS = [
     type: 'C',
     quantity: 75,
     unit_cost: 2
+  },
+  {
+  type: 'E',
+  quantity: 90,
+  unit_cost: 8
   }
 ].freeze
 
