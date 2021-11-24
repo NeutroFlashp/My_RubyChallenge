@@ -17,12 +17,13 @@ end
 
 def stocks
   PRODUCTS.each do |hash_products|
-    puts "_________________"
+    puts "______________________________________________"
     hash_products.each do |symbol, value|
-      puts "| #{symbol} = #{value} |"
+      print "| #{symbol.upcase} = #{value} |"
     end
-    puts "_________________"
+    puts " "
   end
+  print "______________________________________________"
 end
 
 def add
@@ -43,7 +44,7 @@ loop do
   case menu
   when 1
     stocks
-
+    sleep 10
   when 2
     add
 
@@ -60,5 +61,5 @@ loop do
   else
     puts 'Select a correct option'
   end
-  system('clear')
+  puts "\e[H\e[2J"
 end
