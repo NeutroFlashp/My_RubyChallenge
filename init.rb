@@ -26,13 +26,31 @@ def stocks
 end
 
 def add
-  puts 'adding'
+  new_product = Hash.new
+
+  print('Inserte el nuevo tipo: ')
+  new_type = gets.chomp
+  new_product["type"] = new_type
+
+  print('Inserte la cantidad: ')
+  new_quantity = gets.to_i
+  new_product["quantity"] = new_quantity
+
+  print('Inserte el costo unitario: ')
+  new_unit_cost = gets.to_i
+  new_product["unit_cost"] = new_unit_cost
+
+  PRODUCTS.push(new_product)
+  puts 'El nuvo producto fue añadido'
 end
 
 def retire
-  print 'Select type: '
-  selected_type = gets.chomp
+  #print 'selecciona un tipo: '
+  #selected_type = gets.chomp
 
+  #if PRODUCTS["type"] == selected_type
+
+  #end
 end
 
 def movements
@@ -60,5 +78,4 @@ loop do
   else
     puts 'Select a correct option'
   end
-  system('clear')
 end
