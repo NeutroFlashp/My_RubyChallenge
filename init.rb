@@ -35,6 +35,7 @@ def stocks
 end
 
 def add
+
   new_product = Hash.new
 
   print('Inserte el nuevo tipo: ')
@@ -50,16 +51,12 @@ def add
   new_product["unit_cost"] = new_unit_cost
 
   PRODUCTS.push(new_product)
-  puts 'El nuevo producto fue añadido'
+  puts 'Se guardaron los cambios'
+
 end
 
 def retire
-  #print 'selecciona un tipo: '
-  #selected_type = gets.chomp
 
-  #if PRODUCTS["type"] == selected_type
-
-  #end
 end
 
 def movements
