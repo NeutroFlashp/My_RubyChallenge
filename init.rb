@@ -25,7 +25,7 @@ end
 class Board #clase 2
   def self.show #atributo 2
     $list = PRODUCTS.map(&:clone) #variable_global #clonacion de products.rb
-    PRODUCTS.each do |hash_products|
+    $list.each do |hash_products|
       puts "________________________________________".green
       hash_products.each do |symbol, value|
         print "|".green
