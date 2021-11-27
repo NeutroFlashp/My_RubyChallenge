@@ -3,9 +3,10 @@
 require_relative './products'
 require 'colorize' #gema para colores
 
-# Write the program here
+$list = PRODUCTS.map(&:clone) #variable_global clonacion de products.rb
 
 def menu
+
   puts 'MENU'.red
   print '1.'.blue
   puts 'Show stocks'.yellow
@@ -22,54 +23,103 @@ def menu
 end
 
 def stocks
-  PRODUCTS.each do |hash_products|
+
+  $list.each do |hash_products|
     puts "________________________________________".green
     hash_products.each do |symbol, value|
       print "|".green
-      print "#{symbol.upcase} = #{value}"
+      print "#{symbol} = #{value}"
       print "|".green
     end
     puts " "
   end
-  print "________________________________________".green
+  puts "________________________________________".green
+
+  sleep 5
 end
 
 def add
 
-  new_product = Hash.new
+  types_existing = []
+  print 'Inserte el tipo: '.red
+  new_type = gets.chomp.upcase
 
-  print('Inserte el nuevo tipo: ')
-  new_type = gets.chomp
-  new_product["type"] = new_type
+  $list.each do |element|
+    types_existing.push(element[:type])
+  end
 
-  print('Inserte la cantidad: ')
-  new_quantity = gets.to_i
-  new_product["quantity"] = new_quantity
+  if types_existing.include?(new_type)
 
-  print('Inserte el costo unitario: ')
-  new_unit_cost = gets.to_i
-  new_product["unit_cost"] = new_unit_cost
+    $list.each do |element|
+      if element[:type] == new_type
 
-  PRODUCTS.push(new_product)
-  puts 'Se guardaron los cambios'
+        print 'Inserte la cantidad: '.red
+        new_quantity = gets.to_i
+        element[:quantity] = new_quantity
+
+        print 'Inserte el costo unitario: '.red
+        new_unit_cost = gets.to_i
+        element[:unit_cost] = new_unit_cost
+
+      end
+    end
+
+  else
+
+    new_product = Hash.new
+
+    new_product[:type] = new_type
+
+    print 'Inserte la cantidad: '.red
+    new_quantity = gets.to_i
+    new_product[:quantity] = new_quantity
+
+    print 'Inserte el costo unitario: '.red
+    new_unit_cost = gets.to_i
+    new_product[:unit_cost] = new_unit_cost
+
+    $list.push(new_product)
+  end
+
+  puts 'Operacion realizada con éxito!'.yellow
+  sleep 3
 
 end
 
 def retire
 
+  print 'Selecciona un tipo: '.red
+  selected_type = gets.chomp.upcase
+  print 'Selecciona la cantidad: '.red
+  selected_quantity = gets.to_i
+  if selected_type == list[0][:type]
+    if selected_quantity < list[0][:quantity]
+      list[0][:quantity] - selected_quantity
+      puts "El producto se retiro con exito!".blue
+    else
+      print "ERROR! ".yellow
+      puts "La solicitud excede el stock actual".red
+    end
+  end
+
 end
 
 def movements
-  puts 'movements'
+
+
+
+end
+
+def out_program
+  print 'Closing the program!'.red
+
 end
 
 loop do
-
   case menu
 
   when 1
     stocks
-    sleep 10 #tiempo(en seg )
 
   when 2
     add
@@ -81,14 +131,13 @@ loop do
     movements
 
   when 5
-    print 'Closing the program!'.red
+    out_program
     exit(0)
-
   else
+
     print 'ERROR! '.yellow
     puts 'Select a correct option'.red
-    sleep 3 #tiempo (en seg)
-  end
+    sleep 5 #tiempo (en seg)
 
-  puts "\e[H\e[2J"
+  end
 end

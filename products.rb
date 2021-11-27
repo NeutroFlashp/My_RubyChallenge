@@ -21,5 +21,5 @@ PRODUCTS = [
   quantity: 90,
   unit_cost: 8
   }
-]
+].freeze
 
