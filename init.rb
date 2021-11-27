@@ -5,6 +5,7 @@ require 'colorize' #gema para colores
 
 $list = PRODUCTS.map(&:clone) #variable_global clonacion de products.rb
 
+
 def menu
 
   puts 'MENU'.red
@@ -20,6 +21,7 @@ def menu
   puts 'Exit'.yellow
   print 'Select option: '.blue
   gets.to_i
+
 end
 
 def stocks
@@ -33,6 +35,7 @@ def stocks
     end
     puts " "
   end
+
   puts "________________________________________".green
 
   sleep 5
@@ -81,9 +84,6 @@ def add
     $list.push(new_product)
   end
 
-  puts 'Operacion realizada con éxito!'.yellow
-  sleep 3
-
 end
 
 def retire
@@ -92,8 +92,9 @@ def retire
   selected_type = gets.chomp.upcase
   print 'Selecciona la cantidad: '.red
   selected_quantity = gets.to_i
-  if selected_type == list[0][:type]
-    if selected_quantity < list[0][:quantity]
+
+  if selected_type == $list[0][:type]
+    if selected_quantity < $list[0][:quantity]
       list[0][:quantity] - selected_quantity
       puts "El producto se retiro con exito!".blue
     else
@@ -102,17 +103,26 @@ def retire
     end
   end
 
+  $list.each do |x|
+    if selected_type == x[:type]
+      if selected_quantity < x[:quantity]
+        list.push(x[:quantity] - selected_quantity)
+        puts "El producto se retiro con exito!".blue
+      else
+        print "ERROR! ".yellow
+        puts "La solicitud excede el stock actual".red
+      end
+    end
+  end
+
 end
 
 def movements
-
-
 
 end
 
 def out_program
   print 'Closing the program!'.red
-
 end
 
 loop do
