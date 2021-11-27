@@ -97,17 +97,24 @@ def retire
 
   print 'Selecciona un tipo: '.red
   selected_type = gets.chomp.upcase
+
   print 'Selecciona la cantidad: '.red
   selected_quantity = gets.to_i
 
   $list.each do |x|
+
     if selected_type == x[:type]
       if selected_quantity < x[:quantity]
-        list.push(x[:quantity] - selected_quantity)
+        resta = x[:quantity] - selected_quantity
+        x[:quantity] = resta
         puts "El producto se retiro con exito!".blue
+        sleep 4
+
       else
         print "ERROR! ".yellow
         puts "La solicitud excede el stock actual".red
+        sleep 4
+
       end
     end
   end
