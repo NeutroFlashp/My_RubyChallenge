@@ -3,8 +3,8 @@
 PRODUCTS = [
   {
     type: 'D',
-    quantity: 50,
-    unit_cost: 9
+    quantity: 200,
+    unit_cost: 1
   },
   {
     type: 'B',

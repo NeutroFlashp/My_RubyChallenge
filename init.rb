@@ -56,13 +56,19 @@ def add
     $list.each do |element|
       if element[:type] == new_type
 
+        initial_quantity = element[:quantity]
+        initial_cost = element[:unit_cost]
+
         print 'Inserte la cantidad: '.red
-        new_quantity = gets.to_i
+        new_quantity = gets.to_f
         element[:quantity] = new_quantity
 
         print 'Inserte el costo unitario: '.red
-        new_unit_cost = gets.to_i
+        new_unit_cost = gets.to_f
         element[:unit_cost] = new_unit_cost
+
+        average = ((initial_quantity * initial_cost) + (new_quantity*new_unit_cost) ) / (initial_quantity + new_quantity)
+        puts "Average = #{average}"
 
       end
     end
@@ -83,6 +89,7 @@ def add
 
     $list.push(new_product)
   end
+  puts 'Operacion realizada con éxito'.green
 
 end
 
@@ -92,16 +99,6 @@ def retire
   selected_type = gets.chomp.upcase
   print 'Selecciona la cantidad: '.red
   selected_quantity = gets.to_i
-
-  if selected_type == $list[0][:type]
-    if selected_quantity < $list[0][:quantity]
-      list[0][:quantity] - selected_quantity
-      puts "El producto se retiro con exito!".blue
-    else
-      print "ERROR! ".yellow
-      puts "La solicitud excede el stock actual".red
-    end
-  end
 
   $list.each do |x|
     if selected_type == x[:type]
