@@ -122,7 +122,17 @@ def retire
 end
 
 def movements
-
+  puts 'working in this section, return later :)'
+  #print 'Seleccione un tipo: '.red
+  #movements_type = gets.chomp.upcase
+  #$list.each do |x|
+  #if movements_type == x[:type]
+  #a = @@selected_quantity
+  #b = @@initial_quantity
+  #puts "Entrada = #{b}"
+  #puts "Salida = #{a-b}"
+  #end
+  #end
 end
 
 def out_program
